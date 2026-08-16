@@ -15,6 +15,7 @@ import {
   Terminal,
   Cpu,
   GitBranch,
+  ExternalLink,
 } from "lucide-react";
 import { KERNEL_INFO, THEMES } from "../../utils/systemData";
 import { SystemEdition, SystemTheme } from "../../types";
@@ -297,78 +298,94 @@ export const SystemSettingsApp: React.FC<SystemSettingsAppProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <Code2 className="w-5 h-5 text-sky-400" />
-                <h3 className="text-sm font-bold text-white">LoComunite • Código do Sistema & Sub-Kernels</h3>
+                <h3 className="text-sm font-bold text-white">LoComunite • Repositório Oficial do LobaireOS</h3>
               </div>
               <p className="text-zinc-400 mt-1">
-                Gerencie o código-fonte do sistema operacional e alterne entre as versões do Kernel KobaireKe.
+                Acesse o código-fonte aberto, gerencie os sub-kernels KobaireKe e colabore no desenvolvimento soberano.
               </p>
             </div>
 
-            {/* Kernel Selector Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Option 1: Standard LobaireOS (No LOPS) */}
-              <div
-                onClick={() => setSystemEdition?.("standard")}
-                className={`p-4 rounded-2xl border cursor-pointer transition flex flex-col justify-between space-y-3 ${
-                  systemEdition === "standard"
-                    ? "bg-zinc-900 border-sky-500 shadow-lg shadow-sky-500/10"
-                    : "bg-zinc-900/50 border-zinc-800 hover:border-zinc-700"
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="px-2 py-0.5 rounded bg-zinc-800 text-[10px] font-mono text-zinc-300 border border-zinc-700">
-                      OFICIAL
-                    </span>
-                    {systemEdition === "standard" && (
-                      <span className="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 text-[10px] font-bold">
-                        EM EXECUÇÃO
-                      </span>
-                    )}
+            {/* Official GitHub Card */}
+            <div className="p-5 rounded-2xl bg-zinc-900/90 border border-sky-500/30 space-y-4 shadow-xl shadow-sky-500/5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800 pb-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-zinc-950 border border-zinc-700 flex items-center justify-center text-xl text-white">
+                    🐙
                   </div>
-                  <h4 className="font-bold text-white text-sm mt-2">LobaireOS Padrão</h4>
-                  <p className="font-mono text-xs text-sky-400 mt-1">KobaireKe -- LobaireOS No LOPS</p>
-                  <p className="text-[11px] text-zinc-400 mt-2">
-                    Kernel de produção blindado com isolamento rígido de memória, sem rotinas experimentais LOPS.
-                  </p>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-xs text-sky-400 font-bold">corocotoco22-cmyk /</span>
+                      <span className="font-mono text-sm text-white font-bold">LobaireOS</span>
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono">
+                        Public
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-zinc-400 mt-0.5">
+                      Repositório Oficial & Comunidade LoComunite (Kernel: Kobaire -- LobaireOS)
+                    </p>
+                  </div>
                 </div>
-                <div className="pt-2 border-t border-zinc-800 text-[10px] font-mono text-zinc-400 flex items-center justify-between">
-                  <span>LOPS: Desabilitado</span>
-                  <span className="text-emerald-400">Zero-Trust V4.19</span>
+
+                <a
+                  href="https://github.com/corocotoco22-cmyk/LobaireOS"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-zinc-950 font-bold text-xs transition shadow-md"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Acessar no GitHub</span>
+                </a>
+              </div>
+
+              {/* Git clone box */}
+              <div className="space-y-1.5">
+                <span className="text-[11px] font-mono text-zinc-400">Clone via HTTPS:</span>
+                <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950 border border-zinc-800 font-mono text-xs text-sky-300">
+                  <span className="truncate">git clone https://github.com/corocotoco22-cmyk/LobaireOS.git</span>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard?.writeText("git clone https://github.com/corocotoco22-cmyk/LobaireOS.git");
+                      setPinMessage("Comando Git copiado!");
+                      setTimeout(() => setPinMessage(null), 2500);
+                    }}
+                    className="ml-2 px-2.5 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-[10px] transition"
+                  >
+                    Copiar
+                  </button>
                 </div>
               </div>
 
-              {/* Option 2: LoComunite (LOPS) */}
-              <div
-                onClick={() => setSystemEdition?.("locomunite")}
-                className={`p-4 rounded-2xl border cursor-pointer transition flex flex-col justify-between space-y-3 ${
-                  systemEdition === "locomunite"
-                    ? "bg-zinc-900 border-sky-500 shadow-lg shadow-sky-500/10"
-                    : "bg-zinc-900/50 border-zinc-800 hover:border-zinc-700"
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="px-2 py-0.5 rounded bg-sky-500/10 text-[10px] font-mono text-sky-300 border border-sky-500/30">
-                      LOCOMUNITE
-                    </span>
-                    {systemEdition === "locomunite" && (
-                      <span className="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 text-[10px] font-bold">
-                        EM EXECUÇÃO
-                      </span>
-                    )}
-                  </div>
-                  <h4 className="font-bold text-white text-sm mt-2">LoComunite (Código Fonte)</h4>
-                  <p className="font-mono text-xs text-sky-400 mt-1">KobaireKe -- LobaireOS LOPS</p>
-                  <p className="text-[11px] text-zinc-400 mt-2">
-                    Edição aberta com o subsistema otimizado de processos LOPS (Lobaire Optimized Process Subsystem) ativo.
-                  </p>
+              {/* Repo Stats */}
+              <div className="grid grid-cols-3 gap-2 text-center text-xs">
+                <div className="p-2.5 rounded-xl bg-zinc-950/60 border border-zinc-800/80">
+                  <span className="text-zinc-500 text-[10px] block">KERNEL</span>
+                  <span className="font-bold text-sky-400 font-mono text-[11px]">Kobaire -- LobaireOS</span>
                 </div>
-                <div className="pt-2 border-t border-zinc-800 text-[10px] font-mono text-zinc-400 flex items-center justify-between">
-                  <span className="text-sky-300">LOPS: Ativo (Comunidade)</span>
-                  <span className="text-emerald-400">Open Source</span>
+                <div className="p-2.5 rounded-xl bg-zinc-950/60 border border-zinc-800/80">
+                  <span className="text-zinc-500 text-[10px] block">LICENÇA</span>
+                  <span className="font-bold text-white font-mono">GPL-3.0</span>
+                </div>
+                <div className="p-2.5 rounded-xl bg-zinc-950/60 border border-zinc-800/80">
+                  <span className="text-zinc-500 text-[10px] block">SEGURANÇA</span>
+                  <span className="font-bold text-emerald-400 font-mono">Zero-Trust</span>
                 </div>
               </div>
+            </div>
+
+            {/* Kernel Card */}
+            <div className="p-4 rounded-2xl bg-zinc-900 border border-zinc-800 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-white text-xs font-mono flex items-center gap-2">
+                  <Cpu className="w-4 h-4 text-sky-400" />
+                  Kernel do Sistema: Kobaire -- LobaireOS
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono">
+                  ATIVO
+                </span>
+              </div>
+              <p className="text-xs text-zinc-400 leading-relaxed">
+                O kernel unificado <strong>Kobaire -- LobaireOS</strong> gerencia as páginas de memória volátil sob isolamento rígido AES-256 e sandboxing estrito em todos os processos.
+              </p>
             </div>
 
             {/* LoComunite System Code Box */}
@@ -376,26 +393,23 @@ export const SystemSettingsApp: React.FC<SystemSettingsAppProps> = ({
               <div className="flex items-center justify-between">
                 <span className="font-bold text-zinc-200 flex items-center gap-1.5">
                   <Terminal className="w-4 h-4 text-sky-400" />
-                  Código do Kernel KobaireKe (kobaire_kernel.c)
+                  Código do Kernel Kobaire (kobaire_kernel.c)
                 </span>
-                <span className="text-[10px] font-mono text-zinc-400">LoComunite v3.4</span>
+                <span className="text-[10px] font-mono text-zinc-400">github.com/corocotoco22-cmyk/LobaireOS</span>
               </div>
               <pre className="p-3 rounded-lg bg-zinc-950 border border-zinc-800/80 font-mono text-[11px] text-zinc-300 overflow-x-auto">
-{`#include <lobaire/security.h>
+{`/*
+ * Repositório Oficial: https://github.com/corocotoco22-cmyk/LobaireOS
+ * Kernel: Kobaire -- LobaireOS
+ */
+#include <lobaire/security.h>
 #include <lobaire/sandbox.h>
 
-#ifdef CONFIG_LOBAIRE_LOPS
-#define KERNEL_RELEASE "KobaireKe -- LobaireOS LOPS"
-#define LOPS_OPTIMIZED_SUBSYSTEM 1
-#else
-#define KERNEL_RELEASE "KobaireKe -- LobaireOS No LOPS"
-#define LOPS_OPTIMIZED_SUBSYSTEM 0
-#endif
+#define KERNEL_RELEASE "Kobaire -- LobaireOS"
 
 int init_kobaire_kernel(void) {
-    printk("[KobaireKe] Booting Kernel: %s\\n", KERNEL_RELEASE);
-    printk("[KobaireKe] LOPS Subsystem: %s\\n", 
-           LOPS_OPTIMIZED_SUBSYSTEM ? "ENABLED (LoComunite)" : "DISABLED (No LOPS)");
+    printk("[Kobaire] Booting Kernel: %s\\n", KERNEL_RELEASE);
+    printk("[Kobaire] Repository: https://github.com/corocotoco22-cmyk/LobaireOS\\n");
     enforce_process_isolation();
     return 0;
 }`}

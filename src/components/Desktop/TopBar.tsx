@@ -103,12 +103,28 @@ export const TopBar: React.FC<TopBarProps> = ({
           >
             <div className="px-3 py-2 border-b border-zinc-800/80 mb-1">
               <p className="font-bold text-zinc-100">
-                {systemEdition === "locomunite" ? "LobaireOS • LoComunite" : "LobaireOS 3.4 Hardened"}
+                LobaireOS 3.4 Hardened
               </p>
               <p className="text-[10px] text-sky-400 font-mono">
-                {systemEdition === "locomunite" ? "KobaireKe -- LobaireOS LOPS" : "KobaireKe -- LobaireOS No LOPS"}
+                Kernel: Kobaire -- LobaireOS
               </p>
             </div>
+            <button
+              onClick={() => {
+                onOpenApp("locomunite");
+                setIsWolfMenuOpen(false);
+              }}
+              className="w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-zinc-300 hover:bg-zinc-800 hover:text-white transition"
+              title="Abrir aplicativo LoComunite Hub"
+            >
+              <div className="flex items-center gap-2">
+                <Code2 className="w-3.5 h-3.5 text-sky-400" />
+                <span>LoComunite Hub</span>
+              </div>
+              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-zinc-900 border border-zinc-700 text-sky-400">
+                GitHub
+              </span>
+            </button>
             <button
               onClick={() => {
                 onOpenApp("shield");
@@ -128,22 +144,6 @@ export const TopBar: React.FC<TopBarProps> = ({
             >
               <Sliders className="w-3.5 h-3.5 text-sky-400" />
               <span>Ajustes do Sistema</span>
-            </button>
-            <button
-              onClick={() => {
-                onToggleSystemEdition?.();
-                setIsWolfMenuOpen(false);
-              }}
-              className="w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-zinc-300 hover:bg-zinc-800 hover:text-white transition"
-              title="Alternar entre Edição Padrão e LoComunite"
-            >
-              <div className="flex items-center gap-2">
-                <Code2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>LoComunite (Código)</span>
-              </div>
-              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-zinc-900 border border-zinc-700 text-sky-400">
-                {systemEdition === "locomunite" ? "Kernel LOPS" : "Kernel No LOPS"}
-              </span>
             </button>
             <button
               onClick={() => {

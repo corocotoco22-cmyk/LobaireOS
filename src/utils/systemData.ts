@@ -93,6 +93,17 @@ export const APP_REGISTRY: Record<string, AppMetadata> = {
     defaultHeight: 540,
     category: "system",
   },
+  locomunite: {
+    id: "locomunite",
+    name: "LoComunite Hub",
+    shortName: "LoComunite",
+    description: "Repositório Oficial do LobaireOS no GitHub (corocotoco22-cmyk/LobaireOS), Código-Fonte e Comunidade",
+    icon: "Code2",
+    defaultWidth: 860,
+    defaultHeight: 580,
+    category: "system",
+    badge: "GitHub",
+  },
 };
 
 export const INITIAL_SECURITY_INCIDENTS: SecurityIncident[] = [
@@ -321,9 +332,9 @@ A privacidade não é sobre esconder algo errado; é sobre proteger tudo o que �
 #endif
 
 int init_kobaire_kernel(void) {
-    printk("[KobaireKe] Booting Kernel: %s\\n", KERNEL_RELEASE);
-    printk("[KobaireKe] Memory Vault: AES-256 Volatile Page Guard Active\\n");
-    printk("[KobaireKe] LOPS Subsystem: %s\\n", LOPS_OPTIMIZED_SUBSYSTEM ? "ENABLED (LoComunite)" : "DISABLED (No LOPS)");
+    printk("[Kobaire] Booting Kernel: %s\\n", "Kobaire -- LobaireOS");
+    printk("[Kobaire] Memory Vault: AES-256 Volatile Page Guard Active\\n");
+    printk("[Kobaire] Repository: %s\\n", "https://github.com/corocotoco22-cmyk/LobaireOS");
     
     // Enforce Zero-Trust Sandboxing
     enforce_process_isolation();
@@ -343,16 +354,22 @@ int init_kobaire_kernel(void) {
     updatedAt: "Hoje, 15:32",
     content: `# LoComunite: Repositório & Código do Sistema LobaireOS
 
-Bem-vindo ao **LoComunite**, a iniciativa aberta de código-fonte soberano do LobaireOS.
+Repositório Oficial no GitHub:
+🔗 **https://github.com/corocotoco22-cmyk/LobaireOS**
 
-### Matriz de Kernels:
-- **LobaireOS Standard (Produção)**: Kernel \`KobaireKe -- LobaireOS No LOPS\` (Sem rotinas LOPS)
-- **LoComunite Community (Desenvolvimento & Comunidade)**: Kernel \`KobaireKe -- LobaireOS LOPS\` (Com suporte LOPS - Lobaire Optimized Process Subsystem)
+Clone o projeto:
+\`\`\`bash
+git clone https://github.com/corocotoco22-cmyk/LobaireOS.git
+\`\`\`
+
+### Kernel do Sistema:
+- **Kernel Oficial**: \`Kobaire -- LobaireOS\`
 
 ### Diretrizes de Segurança:
 1. Todo código é inspecionado sob modelo Zero-Trust.
 2. Isolamento rígido de memória em sandbox por aplicação.
-3. Telemetrias e chaves mestras externas são estritamente proibidas.`,
+3. Telemetrias e chaves mestras externas são estritamente proibidas.
+4. Repositório oficial aberto: https://github.com/corocotoco22-cmyk/LobaireOS`,
   },
   {
     id: "f-loco-3",
@@ -367,31 +384,51 @@ Bem-vindo ao **LoComunite**, a iniciativa aberta de código-fonte soberano do Lo
     content: `{
   "system": "LoComunite",
   "project": "LobaireOS Sovereign WebOS",
-  "defaultKernel": "KobaireKe -- LobaireOS No LOPS",
-  "communityKernel": "KobaireKe -- LobaireOS LOPS",
+  "githubRepository": "https://github.com/corocotoco22-cmyk/LobaireOS",
+  "gitCloneUrl": "https://github.com/corocotoco22-cmyk/LobaireOS.git",
+  "kernel": "Kobaire -- LobaireOS",
   "features": {
-    "lopsEnabled": true,
     "zeroTrustSandboxing": true,
     "memoryWipeOnPanic": true
   }
 }`,
   },
+  {
+    id: "f-loco-4",
+    name: "github_repository.url",
+    type: "file",
+    parentId: "f-root-locomunite",
+    size: "128 B",
+    mimeType: "text/uri-list",
+    isEncrypted: false,
+    checksum: "11223344556677889900aabbccddeeff11223344556677889900aabbccddeeff",
+    updatedAt: "Hoje, 15:40",
+    content: `[InternetShortcut]
+URL=https://github.com/corocotoco22-cmyk/LobaireOS
+Title=LoComunite - Repositório Oficial do LobaireOS no GitHub`,
+  },
 ];
+
+export const LOCOMUNITE_GITHUB_URL = "https://github.com/corocotoco22-cmyk/LobaireOS";
+export const LOCOMUNITE_GIT_CLONE = "git clone https://github.com/corocotoco22-cmyk/LobaireOS.git";
+export const SYSTEM_KERNEL_NAME = "Kobaire -- LobaireOS";
 
 export const KERNEL_INFO = {
   standard: {
     id: "standard" as const,
     editionName: "LobaireOS 3.4 Hardened",
-    kernelName: "KobaireKe -- LobaireOS No LOPS",
-    tagline: "Kernel de Produção Zero-Trust",
-    description: "Versão oficial estritamente blindada e imutável sem módulos LOPS",
+    kernelName: SYSTEM_KERNEL_NAME,
+    tagline: "Kernel Oficial Zero-Trust",
+    description: "Versão oficial estritamente blindada e imutável com Kobaire -- LobaireOS",
+    githubUrl: LOCOMUNITE_GITHUB_URL,
   },
   locomunite: {
     id: "locomunite" as const,
     editionName: "LoComunite (Código Fonte Aberto)",
-    kernelName: "KobaireKe -- LobaireOS LOPS",
-    tagline: "Kernel Comunitário LOPS Habilitado",
-    description: "Árvore de código comunitária do sistema com LOPS (Lobaire Optimized Process Subsystem)",
+    kernelName: SYSTEM_KERNEL_NAME,
+    tagline: "Kernel Comunitário Oficial",
+    description: "Árvore de código comunitária do sistema executando Kobaire -- LobaireOS",
+    githubUrl: LOCOMUNITE_GITHUB_URL,
   },
 };
 

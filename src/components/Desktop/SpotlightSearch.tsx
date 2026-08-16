@@ -12,6 +12,7 @@ import {
   Sliders,
   Flame,
   ArrowRight,
+  Code2,
 } from "lucide-react";
 import { AppId } from "../../types";
 import { APP_REGISTRY } from "../../utils/systemData";
@@ -33,6 +34,7 @@ const ICONS: Record<string, any> = {
   FileText,
   Activity,
   Sliders,
+  Code2,
 };
 
 export const SpotlightSearch: React.FC<SpotlightSearchProps> = ({

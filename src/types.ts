@@ -7,7 +7,8 @@ export type AppId =
   | "terminal"
   | "notes"
   | "settings"
-  | "monitor";
+  | "monitor"
+  | "locomunite";
 
 export interface AppMetadata {
   id: AppId;

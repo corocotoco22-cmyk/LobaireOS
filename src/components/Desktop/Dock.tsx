@@ -11,6 +11,7 @@ import {
   Sliders,
   Flame,
   LayoutGrid,
+  Code2,
 } from "lucide-react";
 import { AppId, WindowState } from "../../types";
 import { APP_REGISTRY } from "../../utils/systemData";
@@ -33,6 +34,7 @@ const ICON_MAP: Record<string, any> = {
   FileText,
   Activity,
   Sliders,
+  Code2,
 };
 
 export const Dock: React.FC<DockProps> = ({

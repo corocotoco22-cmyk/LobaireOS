@@ -67,11 +67,10 @@ export const WolfShellApp: React.FC<WolfShellAppProps> = ({
       case "help":
         output = (
           <div className="space-y-1 text-zinc-300 text-xs">
-            <p className="text-sky-400 font-bold">Comandos do Sistema KobaireKe & Soberania:</p>
-            <p>• <span className="text-emerald-400 font-mono">uname -a / kernel</span> : Exibe versão e release do Kernel KobaireKe</p>
-            <p>• <span className="text-emerald-400 font-mono">locomunite</span> : Informações do código-fonte e subsistema LOPS</p>
-            <p>• <span className="text-emerald-400 font-mono">locomunite --toggle</span> : Alterna entre Edição Padrão e LoComunite</p>
-            <p>• <span className="text-emerald-400 font-mono">locomunite --code</span> : Exibe o código fonte de inicialização do kernel</p>
+            <p className="text-sky-400 font-bold">Comandos do Sistema Kobaire & Soberania:</p>
+            <p>• <span className="text-emerald-400 font-mono">uname -a / kernel</span> : Exibe o Kernel Kobaire -- LobaireOS</p>
+            <p>• <span className="text-emerald-400 font-mono">locomunite</span> : Informações do repositório GitHub e código do sistema</p>
+            <p>• <span className="text-emerald-400 font-mono">locomunite --code</span> : Exibe o código fonte C de inicialização do kernel</p>
             <p>• <span className="text-emerald-400 font-mono">wolf --status</span> : Relatório do Kernel e Proteções</p>
             <p>• <span className="text-emerald-400 font-mono">genpass [tamanho]</span> : Gera senha militar criptográfica</p>
             <p>• <span className="text-emerald-400 font-mono">hash &lt;texto&gt;</span> : Calcula hash SHA-256 imediato</p>
@@ -81,7 +80,7 @@ export const WolfShellApp: React.FC<WolfShellAppProps> = ({
             <p>• <span className="text-emerald-400 font-mono">whoami</span> : Exibe identidade e isolamento do sandbox</p>
             <p>• <span className="text-emerald-400 font-mono">neofetch</span> : Exibe especificações minimalistas do OS</p>
             <p>• <span className="text-emerald-400 font-mono">matrix</span> : Ativa chuva binária de segurança</p>
-            <p>• <span className="text-emerald-400 font-mono">open &lt;app&gt;</span> : Abre app (shield, vault, guardian, files, settings)</p>
+            <p>• <span className="text-emerald-400 font-mono">open &lt;app&gt;</span> : Abre app (shield, vault, guardian, files, locomunite, settings)</p>
             <p>• <span className="text-emerald-400 font-mono">panic</span> : Aciona protocolo de emergência imediato</p>
             <p>• <span className="text-emerald-400 font-mono">clear</span> : Limpa a tela do terminal</p>
           </div>
@@ -95,45 +94,40 @@ export const WolfShellApp: React.FC<WolfShellAppProps> = ({
       case "uname":
       case "kernel":
         if (args[0] === "-r") {
-          output = currentKernel.kernelName;
+          output = "Kobaire -- LobaireOS";
         } else {
-          output = `Linux lobaire-workstation 6.1.0-kobaire #1 SMP PREEMPT ${currentKernel.kernelName} x86_64 GNU/Linux`;
+          output = "Linux lobaire-workstation 6.1.0-kobaire #1 SMP PREEMPT Kobaire -- LobaireOS x86_64 GNU/Linux";
         }
         break;
 
+      case "github":
+      case "repo":
       case "locomunite":
-        if (args[0] === "--toggle") {
-          if (setSystemEdition) {
-            const next = systemEdition === "standard" ? "locomunite" : "standard";
-            setSystemEdition(next);
-            output = `[LoComunite] Sistema alternado para: ${KERNEL_INFO[next].editionName}\nKernel em execução: ${KERNEL_INFO[next].kernelName}`;
-          } else {
-            output = "Erro ao alternar edição do sistema.";
-            isError = true;
-          }
-        } else if (args[0] === "--code") {
+        if (args[0] === "--code") {
           output = (
             <pre className="text-sky-300 font-mono text-[11px] bg-zinc-950 p-2.5 rounded border border-zinc-800">
 {`/* LoComunite: kobaire_kernel.c */
-#ifdef CONFIG_LOBAIRE_LOPS
-#define KERNEL_RELEASE "KobaireKe -- LobaireOS LOPS"
-#define LOPS_OPTIMIZED_SUBSYSTEM 1
-#else
-#define KERNEL_RELEASE "KobaireKe -- LobaireOS No LOPS"
-#define LOPS_OPTIMIZED_SUBSYSTEM 0
-#endif`}
+/* Repository: https://github.com/corocotoco22-cmyk/LobaireOS */
+#define KERNEL_RELEASE "Kobaire -- LobaireOS"
+
+int init_kobaire_kernel(void) {
+    printk("[Kobaire] Booting Kernel: %s\\n", KERNEL_RELEASE);
+    printk("[Kobaire] Repository: https://github.com/corocotoco22-cmyk/LobaireOS\\n");
+    enforce_process_isolation();
+    return 0;
+}`}
             </pre>
           );
         } else {
           output = (
             <div className="text-xs space-y-1 font-mono text-zinc-300">
-              <p className="text-sky-400 font-bold">🐺 LOCOMUNITE — REPOSITÓRIO E CÓDIGO DO SISTEMA:</p>
-              <p>• Edição Atual: <span className="text-white font-bold">{currentKernel.editionName}</span></p>
-              <p>• Kernel Atual: <span className="text-sky-300 font-bold">{currentKernel.kernelName}</span></p>
-              <p>• LobaireOS Padrão: <span className="text-zinc-400">KobaireKe -- LobaireOS No LOPS</span></p>
-              <p>• LoComunite LOPS: <span className="text-zinc-400">KobaireKe -- LobaireOS LOPS</span></p>
+              <p className="text-sky-400 font-bold">🐺 LOCOMUNITE — REPOSITÓRIO OFICIAL DO LOBAIREOS:</p>
+              <p>• GitHub URL: <span className="text-white font-bold underline">https://github.com/corocotoco22-cmyk/LobaireOS</span></p>
+              <p>• Git Clone: <span className="text-emerald-400">git clone https://github.com/corocotoco22-cmyk/LobaireOS.git</span></p>
+              <p>• Kernel Oficial: <span className="text-sky-300 font-bold">Kobaire -- LobaireOS</span></p>
+              <p>• Aplicativo do Sistema: <span className="text-zinc-300">LoComunite Hub</span></p>
               <p className="text-[11px] text-zinc-400 pt-1">
-                Dica: Digite <span className="text-emerald-400 font-bold">locomunite --toggle</span> para alternar ou <span className="text-emerald-400 font-bold">locomunite --code</span> para inspecionar o fonte.
+                Comandos úteis: <span className="text-emerald-400 font-bold">open locomunite</span> | <span className="text-emerald-400 font-bold">locomunite --code</span> | <span className="text-emerald-400 font-bold">open ghostbrowse</span>
               </p>
             </div>
           );
@@ -145,10 +139,9 @@ export const WolfShellApp: React.FC<WolfShellAppProps> = ({
         output = (
           <div className="text-xs space-y-1 font-mono text-zinc-300">
             <p className="text-sky-400 font-bold">🐺 LOBAIRE-OS KERNEL ZERO-TRUST AUDIT:</p>
-            <p>• Kernel: <span className="text-sky-300 font-bold">{currentKernel.kernelName}</span></p>
+            <p>• Kernel: <span className="text-sky-300 font-bold">Kobaire -- LobaireOS</span></p>
             <p>• Estado do Sistema: <span className="text-emerald-400 font-bold">100% BLINDADO</span></p>
             <p>• Telemetrias Externas: <span className="text-rose-400">DESABILITADAS</span></p>
-            <p>• Subsistema LOPS: <span className="text-indigo-400">{systemEdition === "locomunite" ? "HABILITADO (LoComunite)" : "DESABILITADO (No LOPS)"}</span></p>
             <p>• Entropia da Memória: <span className="text-sky-400">4096-bit CSPRNG Active</span></p>
           </div>
         );
@@ -236,7 +229,7 @@ export const WolfShellApp: React.FC<WolfShellAppProps> = ({
           onOpenApp(args[0]);
           output = `Abrindo aplicativo: ${args[0]}`;
         } else {
-          output = "Uso: open <shield | vault | guardian | files | ghostbrowse | notes | monitor | settings>";
+          output = "Uso: open <shield | vault | guardian | files | ghostbrowse | notes | monitor | settings | locomunite>";
         }
         break;
 

@@ -17,6 +17,7 @@ import { WolfShellApp } from "../Apps/WolfShellApp";
 import { StealthNotesApp } from "../Apps/StealthNotesApp";
 import { ThreatMonitorApp } from "../Apps/ThreatMonitorApp";
 import { SystemSettingsApp } from "../Apps/SystemSettingsApp";
+import { LoComuniteApp } from "../Apps/LoComuniteApp";
 
 interface WindowManagerProps {
   windows: WindowState[];
@@ -171,6 +172,8 @@ export const WindowManager: React.FC<WindowManagerProps> = ({
             setSystemEdition={setSystemEdition}
           />
         );
+      case "locomunite":
+        return <LoComuniteApp />;
       default:
         return <div className="p-6 text-slate-400">Aplicativo em execução.</div>;
     }
