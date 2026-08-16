@@ -94,9 +94,9 @@ export const WolfShellApp: React.FC<WolfShellAppProps> = ({
       case "uname":
       case "kernel":
         if (args[0] === "-r") {
-          output = "Kobaire -- LobaireOS";
+          output = "Kobaire -- LobaireOS (TypeScript Web Engine)";
         } else {
-          output = "Linux lobaire-workstation 6.1.0-kobaire #1 SMP PREEMPT Kobaire -- LobaireOS x86_64 GNU/Linux";
+          output = "LobaireOS Web Engine 3.4.0 (React 18 / TypeScript 5.5 / Vite / Web Crypto Sandboxed)";
         }
         break;
 
@@ -106,15 +106,12 @@ export const WolfShellApp: React.FC<WolfShellAppProps> = ({
         if (args[0] === "--code") {
           output = (
             <pre className="text-sky-300 font-mono text-[11px] bg-zinc-950 p-2.5 rounded border border-zinc-800">
-{`/* LoComunite: kobaire_kernel.c */
-/* Repository: https://github.com/corocotoco22-cmyk/LobaireOS */
-#define KERNEL_RELEASE "Kobaire -- LobaireOS"
+{`/* LobaireOS Web Engine: src/App.tsx */
+/* Repositório: https://github.com/corocotoco22-cmyk/LobaireOS */
 
-int init_kobaire_kernel(void) {
-    printk("[Kobaire] Booting Kernel: %s\\n", KERNEL_RELEASE);
-    printk("[Kobaire] Repository: https://github.com/corocotoco22-cmyk/LobaireOS\\n");
-    enforce_process_isolation();
-    return 0;
+export function App() {
+  // Inicialização do Desktop, Janelas e Sandbox Web Crypto
+  return <LobaireDesktopSystem sovereign={true} zeroTrust={true} />;
 }`}
             </pre>
           );
@@ -124,7 +121,7 @@ int init_kobaire_kernel(void) {
               <p className="text-sky-400 font-bold">🐺 LOCOMUNITE — REPOSITÓRIO OFICIAL DO LOBAIREOS:</p>
               <p>• GitHub URL: <span className="text-white font-bold underline">https://github.com/corocotoco22-cmyk/LobaireOS</span></p>
               <p>• Git Clone: <span className="text-emerald-400">git clone https://github.com/corocotoco22-cmyk/LobaireOS.git</span></p>
-              <p>• Kernel Oficial: <span className="text-sky-300 font-bold">Kobaire -- LobaireOS</span></p>
+              <p>• Arquitetura: <span className="text-sky-300 font-bold">React 18 + TypeScript WebOS</span></p>
               <p>• Aplicativo do Sistema: <span className="text-zinc-300">LoComunite Hub</span></p>
               <p className="text-[11px] text-zinc-400 pt-1">
                 Comandos úteis: <span className="text-emerald-400 font-bold">open locomunite</span> | <span className="text-emerald-400 font-bold">locomunite --code</span> | <span className="text-emerald-400 font-bold">open ghostbrowse</span>

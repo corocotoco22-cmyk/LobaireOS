@@ -46,15 +46,15 @@ const DEFAULT_FILES: GitHubFileItem[] = [
 Repositório Oficial no GitHub:
 🔗 **https://github.com/corocotoco22-cmyk/LobaireOS**
 
-LobaireOS é um sistema operacional web sovereign, zero-trust e focado em privacidade absoluta, alimentado pelo kernel **Kobaire -- LobaireOS**.
+LobaireOS é um sistema operacional web sovereign, zero-trust e focado em privacidade absoluta, construído inteiramente em **TypeScript + React + Vite**.
 
 ## 🚀 Como Iniciar
 
 \`\`\`bash
-# 1. Clonar o repositório
+# 1. Clonar o repositório oficial
 git clone https://github.com/corocotoco22-cmyk/LobaireOS.git
 
-# 2. Entrar na pasta
+# 2. Entrar na pasta do projeto
 cd LobaireOS
 
 # 3. Instalar as dependências
@@ -64,48 +64,12 @@ npm install
 npm run dev
 \`\`\`
 
-## 🛡️ Pilares de Segurança
-- **Kernel Unificado**: Kobaire -- LobaireOS
-- **Isolamento de Processos**: Sandbox estrito com mitigação de fingerprinting
-- **WolfVault**: Criptografia de segredos local AES-256 GCM
-- **GhostBrowse**: Roteamento anônimo e bloqueio total de telemetria`,
-  },
-  {
-    name: "kobaire_kernel.c",
-    path: "kobaire_kernel.c",
-    type: "file",
-    size: 3420,
-    content: `/*
- * Kobaire -- LobaireOS Kernel Initialization
- * Project: LobaireOS Sovereign Operating System
- * Repository: https://github.com/corocotoco22-cmyk/LobaireOS
- * Kernel: Kobaire -- LobaireOS
- */
-
-#include <lobaire/kernel.h>
-#include <lobaire/crypto_sandbox.h>
-#include <lobaire/memory_vault.h>
-
-#define KERNEL_NAME "Kobaire -- LobaireOS"
-#define KERNEL_VERSION "3.4.0-hardened"
-#define ZERO_TRUST_SECURITY_LEVEL 3
-
-int init_kobaire_kernel(void) {
-    printk("[Kobaire] Booting Kernel: %s (v%s)\\n", KERNEL_NAME, KERNEL_VERSION);
-    printk("[Kobaire] Repository: https://github.com/corocotoco22-cmyk/LobaireOS\\n");
-    
-    // Initialize secure volatile memory regions
-    init_memory_vault_protection();
-    
-    // Isolate hardware sensors and telemetry vectors
-    block_unauthorized_hardware_probing();
-    
-    // Enforce process sandboxing
-    enforce_process_isolation();
-    
-    printk("[Kobaire] Kernel initialized successfully. System status: SECURE.\\n");
-    return 0;
-}`,
+## 🛡️ Arquitetura WebOS (TypeScript & React)
+- **Engine**: React 18 + TypeScript + Tailwind CSS
+- **Isolamento de Processos**: Sandbox de memória volátil e controle de permissões por app
+- **WolfVault**: Criptografia de segredos local com Web Crypto API (AES-GCM 256-bit)
+- **GhostBrowse**: Navegador com proteção anti-fingerprinting e isolamento de tráfego
+- **LoComunite**: Hub de conexão com o repositório oficial no GitHub`,
   },
   {
     name: "src",
@@ -114,43 +78,103 @@ int init_kobaire_kernel(void) {
     size: 0,
   },
   {
-    name: "docs",
-    path: "docs",
-    type: "dir",
-    size: 0,
+    name: "src/App.tsx",
+    path: "src/App.tsx",
+    type: "file",
+    size: 4500,
+    content: `// LobaireOS - Main Desktop & Window Manager Engine (React + TypeScript)
+import React, { useState } from "react";
+import { Desktop } from "./components/Desktop/Desktop";
+import { WindowManager } from "./components/WindowManager/WindowManager";
+
+export function App() {
+  return (
+    <div className="w-screen h-screen overflow-hidden bg-zinc-950 text-zinc-100 select-none">
+      <Desktop />
+      <WindowManager />
+    </div>
+  );
+}`,
   },
   {
-    name: "locomunite_manifest.json",
-    path: "locomunite_manifest.json",
+    name: "src/types.ts",
+    path: "src/types.ts",
     type: "file",
-    size: 1120,
-    content: JSON.stringify(
-      {
-        name: "LoComunite",
-        kernel: "Kobaire -- LobaireOS",
-        repository: "https://github.com/corocotoco22-cmyk/LobaireOS",
-        gitClone: "git clone https://github.com/corocotoco22-cmyk/LobaireOS.git",
-        license: "GPL-3.0 Sovereign Open Source",
-        maintainer: "corocotoco22-cmyk",
-        liveSync: true,
-      },
-      null,
-      2
-    ),
+    size: 3100,
+    content: `// LobaireOS - System Types & Process Definitions
+export type AppId = "shield" | "guardian" | "vault" | "ghostbrowse" | "files" | "terminal" | "notes" | "monitor" | "settings" | "locomunite";
+
+export interface SystemProcess {
+  pid: number;
+  name: string;
+  appId: AppId;
+  cpu: number;
+  memoryMb: number;
+  networkKb: number;
+  status: "running" | "sandboxed" | "isolated";
+  threatScore: "SAFE" | "SUSPICIOUS" | "THREAT";
+}`,
   },
   {
     name: "package.json",
     path: "package.json",
     type: "file",
-    size: 890,
-    content: `{\n  "name": "lobaire-os",\n  "version": "3.4.0",\n  "description": "Sovereign Zero-Trust WebOS with Kobaire -- LobaireOS Kernel",\n  "repository": "https://github.com/corocotoco22-cmyk/LobaireOS",\n  "author": "corocotoco22-cmyk",\n  "license": "GPL-3.0"\n}`,
+    size: 980,
+    content: `{
+  "name": "lobaire-os",
+  "private": true,
+  "version": "3.4.0",
+  "type": "module",
+  "description": "Sovereign Zero-Trust Web Operating System (React + TypeScript)",
+  "repository": "https://github.com/corocotoco22-cmyk/LobaireOS",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "lucide-react": "^0.344.0",
+    "motion": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1"
+  }
+}`,
+  },
+  {
+    name: "vite.config.ts",
+    path: "vite.config.ts",
+    type: "file",
+    size: 320,
+    content: `import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,
+    host: '0.0.0.0'
+  }
+});`,
   },
   {
     name: "LICENSE",
     path: "LICENSE",
     type: "file",
     size: 1420,
-    content: `GNU GENERAL PUBLIC LICENSE\nVersion 3, 29 June 2007\n\nCopyright (C) 2026 LobaireOS Project & corocotoco22-cmyk\nEveryone is permitted to copy and distribute verbatim copies of this license document.`,
+    content: `MIT License / Sovereign Open Source
+
+Copyright (c) 2026 corocotoco22-cmyk / LobaireOS
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction.`,
   },
 ];
 

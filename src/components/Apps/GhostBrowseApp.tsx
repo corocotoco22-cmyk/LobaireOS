@@ -641,7 +641,7 @@ LobaireOS is a privacy-first, zero-trust web operating system engineered with ha
                   }`}
                 >
                   <ShieldCheck className="w-4 h-4" />
-                  <span>Kernel (Kobaire)</span>
+                  <span>WebOS (v3.4.0)</span>
                 </button>
               </div>
             </div>

@@ -172,7 +172,7 @@ export const LoComuniteApp: React.FC = () => {
               }`}
             >
               <Cpu className="w-3.5 h-3.5" />
-              <span>Kernel</span>
+              <span>Arquitetura WebOS</span>
             </button>
             <button
               onClick={() => setActiveMode("terminal")}
@@ -532,7 +532,7 @@ npm run dev`}
           </div>
         )}
 
-        {/* MODE 3: KERNEL SPECIFICATIONS */}
+        {/* MODE 3: REAL ARCHITECTURE SPECIFICATIONS (TypeScript / React WebOS Engine) */}
         {activeMode === "kernel" && (
           <div className="h-full overflow-y-auto p-4 md:p-6 space-y-4 max-w-4xl mx-auto">
             <div className="p-5 rounded-2xl bg-zinc-900 border border-zinc-800 space-y-3">
@@ -541,39 +541,54 @@ npm run dev`}
                   <Cpu className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-sm">Kernel: {SYSTEM_KERNEL_NAME}</h3>
+                  <h3 className="font-bold text-white text-sm">Arquitetura Real: LobaireOS Web Engine (TypeScript / React)</h3>
                   <p className="text-xs text-zinc-400 font-mono mt-0.5">
-                    Hospedado no GitHub: https://github.com/corocotoco22-cmyk/LobaireOS
+                    Repositório: https://github.com/corocotoco22-cmyk/LobaireOS
                   </p>
                 </div>
               </div>
 
+              <p className="text-xs text-zinc-300 leading-relaxed">
+                O <strong>LobaireOS</strong> é um <strong>Web Operating System (WebOS) moderno</strong> projetado em TypeScript puro e React 18. Não utiliza kernels compilados em C/C++ ou módulos binários proprietários — todo o isolamento de processos, sandbox de memória volátil, criptografia militar e interface desktop operam através de Web APIs nativas e Web Crypto.
+              </p>
+
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs pt-2">
                 <div className="p-3.5 rounded-xl bg-zinc-950 border border-zinc-800">
-                  <span className="text-zinc-500 text-[10px] block">ESTADO</span>
-                  <span className="font-bold text-emerald-400">100% Blindado</span>
+                  <span className="text-zinc-500 text-[10px] block">ENGINE WEB</span>
+                  <span className="font-bold text-sky-400">React 18 + TypeScript</span>
                 </div>
                 <div className="p-3.5 rounded-xl bg-zinc-950 border border-zinc-800">
-                  <span className="text-zinc-500 text-[10px] block">SUBSYSTEM</span>
-                  <span className="font-bold text-sky-400">LoComunite Hub</span>
+                  <span className="text-zinc-500 text-[10px] block">CRIPTOGRAFIA</span>
+                  <span className="font-bold text-emerald-400">Web Crypto AES-GCM</span>
                 </div>
                 <div className="p-3.5 rounded-xl bg-zinc-950 border border-zinc-800">
-                  <span className="text-zinc-500 text-[10px] block">TELEMETRIA</span>
-                  <span className="font-bold text-rose-400">Bloqueada</span>
+                  <span className="text-zinc-500 text-[10px] block">WINDOW MANAGER</span>
+                  <span className="font-bold text-purple-400">Multi-Window State</span>
                 </div>
               </div>
             </div>
 
             <div className="p-4 rounded-2xl bg-zinc-900 border border-zinc-800 space-y-2">
-              <span className="font-bold text-white text-xs font-mono">Código C de Inicialização:</span>
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-white text-xs font-mono">Estrutura Real dos Módulos do Sistema:</span>
+                <span className="text-[10px] font-mono text-emerald-400">src/</span>
+              </div>
               <pre className="p-3.5 rounded-xl bg-zinc-950 font-mono text-xs text-sky-300 border border-zinc-800 overflow-x-auto">
-{`/* Inicialização nativa do kernel no LobaireOS */
-int init_kobaire_kernel(void) {
-    printk("[Kobaire] Booting Kernel: ${SYSTEM_KERNEL_NAME}\\n");
-    printk("[Kobaire] Repository: ${LOCOMUNITE_GITHUB_URL}\\n");
-    enforce_process_isolation();
-    return 0;
-}`}
+{`LobaireOS/
+├── src/
+│   ├── App.tsx                     # Gerenciador Principal do Desktop e Janelas
+│   ├── types.ts                    # Interfaces de Processos, Apps e Criptografia
+│   ├── components/
+│   │   ├── Desktop/                # Barra de tarefas, Dock, Menu Iniciar e Wallpapers
+│   │   ├── WindowManager/          # Redimensionamento, arrasto e foco de janelas
+│   │   └── Apps/                   # Aplicativos Soberanos (WolfVault, GhostBrowse, etc.)
+│   ├── services/
+│   │   └── githubService.ts        # Integração em tempo real com o GitHub
+│   └── utils/
+│       ├── crypto.ts               # Funções de hashing SHA-256 e cifra AES-256
+│       └── systemData.ts           # Registros de apps e dados locais
+├── package.json                    # Dependências do WebOS (React, Lucide, Tailwind)
+└── vite.config.ts                  # Bundler e servidor de desenvolvimento`}
               </pre>
             </div>
           </div>
