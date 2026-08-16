@@ -1,0 +1,6 @@
+{
+  "name": "LobaireOS 🐺",
+  "description": "Um WebOS minimalista e intuitivo focado em máxima segurança, privacidade e soberania de dados com suíte criptográfica integrada e guardião de segurança com IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
