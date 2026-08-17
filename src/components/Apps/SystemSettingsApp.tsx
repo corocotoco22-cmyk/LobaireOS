@@ -321,7 +321,7 @@ export const SystemSettingsApp: React.FC<SystemSettingsAppProps> = ({
                       </span>
                     </div>
                     <p className="text-[11px] text-zinc-400 mt-0.5">
-                      Repositório Oficial & Comunidade LoComunite (Kernel: Kobaire -- LobaireOS)
+                      Repositório Oficial & Comunidade LoComunite (Engine: Kobaire -- LobaiteOS)
                     </p>
                   </div>
                 </div>
@@ -358,8 +358,8 @@ export const SystemSettingsApp: React.FC<SystemSettingsAppProps> = ({
               {/* Repo Stats */}
               <div className="grid grid-cols-3 gap-2 text-center text-xs">
                 <div className="p-2.5 rounded-xl bg-zinc-950/60 border border-zinc-800/80">
-                  <span className="text-zinc-500 text-[10px] block">KERNEL</span>
-                  <span className="font-bold text-sky-400 font-mono text-[11px]">Kobaire -- LobaireOS</span>
+                  <span className="text-zinc-500 text-[10px] block">ENGINE</span>
+                  <span className="font-bold text-sky-400 font-mono text-[11px]">Kobaire -- LobaiteOS</span>
                 </div>
                 <div className="p-2.5 rounded-xl bg-zinc-950/60 border border-zinc-800/80">
                   <span className="text-zinc-500 text-[10px] block">LICENÇA</span>
@@ -377,14 +377,14 @@ export const SystemSettingsApp: React.FC<SystemSettingsAppProps> = ({
               <div className="flex items-center justify-between">
                 <span className="font-bold text-white text-xs font-mono flex items-center gap-2">
                   <Cpu className="w-4 h-4 text-sky-400" />
-                  Kernel do Sistema: Kobaire -- LobaireOS
+                  Arquitetura do Sistema: Kobaire -- LobaiteOS
                 </span>
                 <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono">
                   ATIVO
                 </span>
               </div>
               <p className="text-xs text-zinc-400 leading-relaxed">
-                O kernel unificado <strong>Kobaire -- LobaireOS</strong> gerencia as páginas de memória volátil sob isolamento rígido AES-256 e sandboxing estrito em todos os processos.
+                O subsistema unificado <strong>Kobaire -- LobaiteOS</strong> gerencia as páginas de memória volátil sob isolamento rígido AES-256 e sandboxing estrito em todos os processos.
               </p>
             </div>
 
@@ -393,32 +393,25 @@ export const SystemSettingsApp: React.FC<SystemSettingsAppProps> = ({
               <div className="flex items-center justify-between">
                 <span className="font-bold text-zinc-200 flex items-center gap-1.5">
                   <Terminal className="w-4 h-4 text-sky-400" />
-                  Código do Kernel Kobaire (kobaire_kernel.c)
+                  Código-Fonte (src/App.tsx)
                 </span>
                 <span className="text-[10px] font-mono text-zinc-400">github.com/corocotoco22-cmyk/LobaireOS</span>
               </div>
               <pre className="p-3 rounded-lg bg-zinc-950 border border-zinc-800/80 font-mono text-[11px] text-zinc-300 overflow-x-auto">
 {`/*
  * Repositório Oficial: https://github.com/corocotoco22-cmyk/LobaireOS
- * Kernel: Kobaire -- LobaireOS
+ * Sistema: LobaiteOS 🐺
+ * Engine: Kobaire -- LobaiteOS
  */
-#include <lobaire/security.h>
-#include <lobaire/sandbox.h>
-
-#define KERNEL_RELEASE "Kobaire -- LobaireOS"
-
-int init_kobaire_kernel(void) {
-    printk("[Kobaire] Booting Kernel: %s\\n", KERNEL_RELEASE);
-    printk("[Kobaire] Repository: https://github.com/corocotoco22-cmyk/LobaireOS\\n");
-    enforce_process_isolation();
-    return 0;
+export function App() {
+  return <LobaiteOSDesktopSystem sovereign={true} zeroTrust={true} />;
 }`}
               </pre>
             </div>
           </div>
         )}
 
-        {/* Tab 5: About LobaireOS */}
+        {/* Tab 5: About LobaiteOS */}
         {activeTab === "about" && (
           <div className="max-w-xl space-y-4">
             <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800 text-center space-y-3">
@@ -436,10 +429,11 @@ int init_kobaire_kernel(void) {
             </div>
 
             <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-1.5 font-mono text-[11px] text-zinc-400">
-              <p>• Kernel Ativo: <span className="text-sky-300 font-bold">{activeKernelInfo.kernelName}</span></p>
+              <p>• Sistema Ativo: <span className="text-sky-300 font-bold">LobaiteOS 🐺 (v3.4.0)</span></p>
+              <p>• Engine: <span className="text-sky-300">{activeKernelInfo.kernelName}</span></p>
               <p>• Base de Código: LoComunite Open Security Subsystem</p>
               <p>• Suíte Criptográfica: AES-256-GCM, PBKDF2-SHA256, Ed25519</p>
-              <p>• Motor de IA: Lobaire Guardian (Gemini 3.7 Flash)</p>
+              <p>• Motor de IA: Lobaite Guardian (Gemini 3.7 Flash)</p>
               <p>• Arquitetura de Memória: Zero-Leak Volatile Sandbox</p>
               <p>• Licença: Código Aberto & Soberano</p>
             </div>

@@ -1,4 +1,4 @@
-# LoComunite: Repositório & Código do Sistema LobaireOS
+# LoComunite: Repositório & Código do Sistema LobaiteOS 🐺
 
 Repositório Oficial no GitHub:
 🔗 **https://github.com/corocotoco22-cmyk/LobaireOS**
@@ -14,8 +14,9 @@ Clone o projeto:
 git clone https://github.com/corocotoco22-cmyk/LobaireOS.git
 ```
 
-### Kernel do Sistema:
-- **Kernel Oficial**: `Kobaire -- LobaireOS`
+### Sistema & Engine:
+- **Nome Oficial**: `LobaiteOS 🐺`
+- **Engine WebOS**: `Kobaire -- LobaiteOS`
 
 ### Diretrizes de Segurança:
 1. Todo código é inspecionado sob modelo Zero-Trust.

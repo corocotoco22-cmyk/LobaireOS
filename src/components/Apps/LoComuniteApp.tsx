@@ -43,9 +43,9 @@ export const LoComuniteApp: React.FC = () => {
 
   // Dynamic GitHub Data
   const [repoInfo, setRepoInfo] = useState<GitHubRepoInfo>({
-    name: "LobaireOS",
+    name: "LobaiteOS",
     fullName: "corocotoco22-cmyk/LobaireOS",
-    description: "Zero-Trust Sovereign Web Operating System com Kernel Kobaire -- LobaireOS",
+    description: "Zero-Trust Sovereign Web Operating System (LobaiteOS 🐺)",
     stars: 1240,
     forks: 48,
     openIssues: 0,
@@ -541,7 +541,7 @@ npm run dev`}
                   <Cpu className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-sm">Arquitetura Real: LobaireOS Web Engine (TypeScript / React)</h3>
+                  <h3 className="font-bold text-white text-sm">Arquitetura Real: LobaiteOS 🐺 Web Engine (TypeScript / React)</h3>
                   <p className="text-xs text-zinc-400 font-mono mt-0.5">
                     Repositório: https://github.com/corocotoco22-cmyk/LobaireOS
                   </p>
@@ -549,7 +549,7 @@ npm run dev`}
               </div>
 
               <p className="text-xs text-zinc-300 leading-relaxed">
-                O <strong>LobaireOS</strong> é um <strong>Web Operating System (WebOS) moderno</strong> projetado em TypeScript puro e React 18. Não utiliza kernels compilados em C/C++ ou módulos binários proprietários — todo o isolamento de processos, sandbox de memória volátil, criptografia militar e interface desktop operam através de Web APIs nativas e Web Crypto.
+                O <strong>LobaiteOS 🐺</strong> é um <strong>Web Operating System (WebOS) moderno</strong> projetado em TypeScript puro e React 18. Não utiliza kernels compilados em C/C++ ou módulos binários proprietários — todo o isolamento de processos, sandbox de memória volátil, criptografia militar e interface desktop operam através de Web APIs nativas e Web Crypto.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs pt-2">
@@ -574,7 +574,7 @@ npm run dev`}
                 <span className="text-[10px] font-mono text-emerald-400">src/</span>
               </div>
               <pre className="p-3.5 rounded-xl bg-zinc-950 font-mono text-xs text-sky-300 border border-zinc-800 overflow-x-auto">
-{`LobaireOS/
+{`LobaiteOS/
 ├── src/
 │   ├── App.tsx                     # Gerenciador Principal do Desktop e Janelas
 │   ├── types.ts                    # Interfaces de Processos, Apps e Criptografia

@@ -85,7 +85,7 @@ export const APP_REGISTRY: Record<string, AppMetadata> = {
   },
   settings: {
     id: "settings",
-    name: "Configurações LobaireOS",
+    name: "Configurações LobaiteOS",
     shortName: "Ajustes",
     description: "Temas Minimalistas, Políticas de Privacidade e Proteções de Hardware",
     icon: "Sliders",
@@ -97,7 +97,7 @@ export const APP_REGISTRY: Record<string, AppMetadata> = {
     id: "locomunite",
     name: "LoComunite Hub",
     shortName: "LoComunite",
-    description: "Repositório Oficial do LobaireOS no GitHub (corocotoco22-cmyk/LobaireOS), Código-Fonte e Comunidade",
+    description: "Repositório Oficial do LobaiteOS no GitHub (corocotoco22-cmyk/LobaireOS), Código-Fonte e Comunidade",
     icon: "Code2",
     defaultWidth: 860,
     defaultHeight: 580,
@@ -302,6 +302,37 @@ A privacidade não é sobre esconder algo errado; é sobre proteger tudo o que �
     updatedAt: "Hoje, 15:30",
   },
   {
+    id: "f-root-cve-cefi",
+    name: "dev_BIOS_CEFI [Bloqueado por Hardware]",
+    type: "folder",
+    parentId: null,
+    isEncrypted: true,
+    updatedAt: "17/08/2026",
+  },
+  {
+    id: "f-cefi-locked-info",
+    name: "ACESSAR_VIA_CATROOT_ONLY.txt",
+    type: "file",
+    parentId: "f-root-cve-cefi",
+    size: "512 B",
+    mimeType: "text/plain",
+    isEncrypted: true,
+    checksum: "c3ab8ff13720e8ad9047dd39466b3c8974e592c2fa383d4a3960714caef0c4f2",
+    updatedAt: "Hoje, 15:00",
+    content: `[AVISO DE HARDWARE - CATROOT EXCLUSIVO]
+O diretório /dev/BIOS/CEFI/ é um cofre criptografado de hardware da firmware catEFI.
+Nem mesmo o usuário 'root' convencional consegue visualizar os binários .efi por aqui.
+
+COMO ACESSAR:
+1. Abra o Terminal WolfShell e digite: catroot
+2. Escolha a opção 5: "Abrir /dev/BIOS/CEFI/"
+3. Ou acesse a aba "Root & CEFI" no Setup catEFI da BIOS.
+
+EXECUÇÃO DE .EFI:
+- Os binários são criados a partir de código HTML e executados sob o subsistema catEFI.
+- Para fechar/sair de qualquer .efi em execução: pressione [Control + Alt + F4] ou [ESC].`,
+  },
+  {
     id: "f-loco-1",
     name: "kobaire_kernel.c",
     type: "file",
@@ -383,10 +414,10 @@ git clone https://github.com/corocotoco22-cmyk/LobaireOS.git
     updatedAt: "Hoje, 15:28",
     content: `{
   "system": "LoComunite",
-  "project": "LobaireOS Sovereign WebOS",
+  "project": "LobaiteOS Sovereign WebOS",
   "githubRepository": "https://github.com/corocotoco22-cmyk/LobaireOS",
   "gitCloneUrl": "https://github.com/corocotoco22-cmyk/LobaireOS.git",
-  "kernel": "Kobaire -- LobaireOS",
+  "kernel": "Kobaire -- LobaiteOS",
   "features": {
     "zeroTrustSandboxing": true,
     "memoryWipeOnPanic": true
@@ -405,21 +436,21 @@ git clone https://github.com/corocotoco22-cmyk/LobaireOS.git
     updatedAt: "Hoje, 15:40",
     content: `[InternetShortcut]
 URL=https://github.com/corocotoco22-cmyk/LobaireOS
-Title=LoComunite - Repositório Oficial do LobaireOS no GitHub`,
+Title=LoComunite - Repositório Oficial do LobaiteOS no GitHub`,
   },
 ];
 
 export const LOCOMUNITE_GITHUB_URL = "https://github.com/corocotoco22-cmyk/LobaireOS";
 export const LOCOMUNITE_GIT_CLONE = "git clone https://github.com/corocotoco22-cmyk/LobaireOS.git";
-export const SYSTEM_KERNEL_NAME = "Kobaire -- LobaireOS";
+export const SYSTEM_KERNEL_NAME = "Kobaire -- LobaiteOS";
 
 export const KERNEL_INFO = {
   standard: {
     id: "standard" as const,
-    editionName: "LobaireOS 3.4 Hardened",
+    editionName: "LobaiteOS 3.4 Hardened",
     kernelName: SYSTEM_KERNEL_NAME,
     tagline: "Kernel Oficial Zero-Trust",
-    description: "Versão oficial estritamente blindada e imutável com Kobaire -- LobaireOS",
+    description: "Versão oficial estritamente blindada e imutável com Kobaire -- LobaiteOS",
     githubUrl: LOCOMUNITE_GITHUB_URL,
   },
   locomunite: {
@@ -427,7 +458,7 @@ export const KERNEL_INFO = {
     editionName: "LoComunite (Código Fonte Aberto)",
     kernelName: SYSTEM_KERNEL_NAME,
     tagline: "Kernel Comunitário Oficial",
-    description: "Árvore de código comunitária do sistema executando Kobaire -- LobaireOS",
+    description: "Árvore de código comunitária do sistema executando Kobaire -- LobaiteOS",
     githubUrl: LOCOMUNITE_GITHUB_URL,
   },
 };

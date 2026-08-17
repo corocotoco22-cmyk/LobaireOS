@@ -91,7 +91,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
       <div className="w-full flex items-center justify-between max-w-4xl text-xs">
         <div className="flex items-center gap-2 text-sky-400 font-mono">
           <ShieldCheck className="w-4 h-4 text-emerald-400" />
-          <span>LobaireOS 🐺 • Zero-Knowledge Session</span>
+          <span>LobaiteOS 🐺 • Zero-Knowledge Session</span>
         </div>
         <button
           onClick={onTriggerPanic}

@@ -27,9 +27,9 @@ export const LobaireGuardianApp: React.FC = () => {
     {
       id: "init-1",
       sender: "guardian",
-      text: `🐺 **Olá! Eu sou o Lobaire Guardian AI.**
+      text: `🐺 **Olá! Eu sou o Lobaite Guardian AI.**
 
-Seu sentinela de cibersegurança e soberania de dados. Estou pronto para ajudar você a:
+Seu sentinela de cibersegurança e soberania de dados do **LobaiteOS 🐺**. Estou pronto para ajudar você a:
 • **Auditar links ou cabeçalhos de e-mails suspeitos** (Detecção de Phishing)
 • **Analisar códigos ou scripts** para identificar vulnerabilidades e injeções
 • **Avaliar políticas de privacidade** e desmascarar termos abusivos

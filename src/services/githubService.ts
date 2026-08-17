@@ -41,12 +41,15 @@ const DEFAULT_FILES: GitHubFileItem[] = [
     path: "README.md",
     type: "file",
     size: 2840,
-    content: `# LobaireOS: The Sovereign & Zero-Trust Web Operating System
+    content: `# LobaiteOS 🐺: The Sovereign & Zero-Trust Web Operating System
 
 Repositório Oficial no GitHub:
 🔗 **https://github.com/corocotoco22-cmyk/LobaireOS**
 
-LobaireOS é um sistema operacional web sovereign, zero-trust e focado em privacidade absoluta, construído inteiramente em **TypeScript + React + Vite**.
+Site no Netlify:
+🔗 **https://lobaireos.netlify.app/**
+
+LobaiteOS 🐺 é um sistema operacional web sovereign, zero-trust e focado em privacidade absoluta, construído inteiramente em **TypeScript + React + Vite**.
 
 ## 🚀 Como Iniciar
 

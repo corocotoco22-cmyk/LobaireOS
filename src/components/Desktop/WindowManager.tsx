@@ -54,6 +54,11 @@ interface WindowManagerProps {
   setClipboardAutoClear: (clear: boolean) => void;
   onTriggerPanic: () => void;
   onOpenApp: (appId: string) => void;
+  onRestartGrub?: () => void;
+  onOpenTTY?: () => void;
+  onOpenCefiVault?: () => void;
+  isRootDeleted?: boolean;
+  setIsRootDeleted?: (deleted: boolean) => void;
 }
 
 export const WindowManager: React.FC<WindowManagerProps> = ({
@@ -89,6 +94,11 @@ export const WindowManager: React.FC<WindowManagerProps> = ({
   setClipboardAutoClear,
   onTriggerPanic,
   onOpenApp,
+  onRestartGrub,
+  onOpenTTY,
+  onOpenCefiVault,
+  isRootDeleted,
+  setIsRootDeleted,
 }) => {
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const dragOffsetRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -147,6 +157,11 @@ export const WindowManager: React.FC<WindowManagerProps> = ({
           <WolfShellApp
             onTriggerPanic={onTriggerPanic}
             onOpenApp={onOpenApp}
+            onRestartGrub={onRestartGrub}
+            onOpenTTY={onOpenTTY}
+            onOpenCefiVault={onOpenCefiVault}
+            isRootDeleted={isRootDeleted}
+            setIsRootDeleted={setIsRootDeleted}
             systemEdition={systemEdition}
             setSystemEdition={setSystemEdition}
           />

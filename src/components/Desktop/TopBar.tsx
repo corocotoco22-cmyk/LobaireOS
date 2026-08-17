@@ -89,10 +89,10 @@ export const TopBar: React.FC<TopBarProps> = ({
         <button
           onClick={() => setIsWolfMenuOpen(!isWolfMenuOpen)}
           className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-zinc-800/60 transition font-bold text-sky-400"
-          title="Menu LobaireOS"
+          title="Menu LobaiteOS"
         >
           <span className="text-sm">🐺</span>
-          <span className="font-mono text-xs tracking-wider text-zinc-100">LobaireOS</span>
+          <span className="font-mono text-xs tracking-wider text-zinc-100">LobaiteOS</span>
         </button>
 
         {/* Wolf System Dropdown Menu */}
@@ -102,11 +102,12 @@ export const TopBar: React.FC<TopBarProps> = ({
             onMouseLeave={() => setIsWolfMenuOpen(false)}
           >
             <div className="px-3 py-2 border-b border-zinc-800/80 mb-1">
-              <p className="font-bold text-zinc-100">
-                LobaireOS 3.4 Hardened
+              <p className="font-bold text-zinc-100 flex items-center gap-1">
+                <span>LobaiteOS 3.4</span>
+                <span>🐺</span>
               </p>
               <p className="text-[10px] text-sky-400 font-mono">
-                Kernel: Kobaire -- LobaireOS
+                Engine: Kobaire -- LobaiteOS
               </p>
             </div>
             <button
