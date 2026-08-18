@@ -13,6 +13,7 @@ import {
   Flame,
   ArrowRight,
   Code2,
+  Smartphone,
 } from "lucide-react";
 import { AppId } from "../../types";
 import { APP_REGISTRY } from "../../utils/systemData";
@@ -35,6 +36,7 @@ const ICONS: Record<string, any> = {
   Activity,
   Sliders,
   Code2,
+  Smartphone,
 };
 
 export const SpotlightSearch: React.FC<SpotlightSearchProps> = ({

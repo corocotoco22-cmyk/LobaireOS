@@ -267,6 +267,7 @@ export const WolfShellApp: React.FC<WolfShellAppProps> = ({
             <p>• <span className="text-emerald-400 font-mono">uname -a / kernel</span> : Exibe a Engine Kobaire -- LobaiteOS</p>
             <p>• <span className="text-emerald-400 font-mono">locomunite</span> : Informações do repositório GitHub e código do sistema</p>
             <p>• <span className="text-emerald-400 font-mono">locomunite --code</span> : Exibe o código fonte de inicialização</p>
+            <p>• <span className="text-emerald-400 font-mono">lfp</span> : Status do subsistema Lobaite For Phone (Mobile)</p>
             <p>• <span className="text-emerald-400 font-mono">wolf --status</span> : Relatório da Engine e Proteções</p>
             <p>• <span className="text-emerald-400 font-mono">genpass [tamanho]</span> : Gera senha militar criptográfica</p>
             <p>• <span className="text-emerald-400 font-mono">hash &lt;texto&gt;</span> : Calcula hash SHA-256 imediato</p>
@@ -455,12 +456,27 @@ export function App() {
         }
         break;
 
+      case "lfp":
+        output = (
+          <div className="text-xs space-y-1 font-mono text-zinc-300">
+            <p className="text-cyan-400 font-bold">📱 LFP (LOBAITE FOR PHONE) — SUBSISTEMA MOBILE UNIVERSAL:</p>
+            <p>• Status: <span className="text-emerald-400 font-bold">Disponível em TUDO</span></p>
+            <p>• Suporte: <span className="text-white font-bold">Smartphones, Tablets, Telas Dobráveis e Web Responsivo</span></p>
+            <p>• Gestos: <span className="text-sky-300">Swipe de Borda, Home Pill, Switcher de Janelas Touch</span></p>
+            <p>• Isolamento: <span className="text-purple-300">Modem Tor Celular 5G / Sandbox por App</span></p>
+            <p className="text-zinc-400 pt-1 text-[11px]">
+              Dica: Digite <span className="text-cyan-400 font-bold">open lfp</span> para abrir o aplicativo de controle móvel.
+            </p>
+          </div>
+        );
+        break;
+
       case "open":
         if (args[0] && onOpenApp) {
           onOpenApp(args[0]);
           output = `Abrindo aplicativo: ${args[0]}`;
         } else {
-          output = "Uso: open <shield | vault | guardian | files | ghostbrowse | notes | monitor | settings | locomunite>";
+          output = "Uso: open <shield | vault | guardian | files | ghostbrowse | notes | monitor | settings | locomunite | lfp>";
         }
         break;
 

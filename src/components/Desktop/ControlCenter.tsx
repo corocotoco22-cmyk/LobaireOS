@@ -12,6 +12,7 @@ import {
   Globe,
   Sliders,
   CheckCircle2,
+  Smartphone,
 } from "lucide-react";
 
 interface ControlCenterProps {
@@ -28,6 +29,9 @@ interface ControlCenterProps {
   dnsProvider: string;
   onLockScreen: () => void;
   onTriggerPanic: () => void;
+  isLfpActive?: boolean;
+  onToggleLfp?: () => void;
+  onOpenApp?: (appId: string) => void;
 }
 
 export const ControlCenter: React.FC<ControlCenterProps> = ({
@@ -44,6 +48,9 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
   dnsProvider,
   onLockScreen,
   onTriggerPanic,
+  isLfpActive,
+  onToggleLfp,
+  onOpenApp,
 }) => {
   if (!isOpen) return null;
 
@@ -132,6 +139,36 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
             <p className="font-medium text-zinc-100 text-[11px] mt-2">Cam/Mic Lock</p>
           </button>
         </div>
+
+        {/* LFP Phone Mode Toggle Card */}
+        {onToggleLfp && (
+          <button
+            onClick={() => {
+              onToggleLfp();
+              onClose();
+            }}
+            className={`w-full p-2.5 rounded-xl border text-left transition flex items-center justify-between ${
+              isLfpActive
+                ? "bg-cyan-500/20 border-cyan-500/50 text-cyan-200"
+                : "bg-zinc-900/60 border-zinc-800 hover:border-cyan-500/30 text-zinc-300"
+            }`}
+          >
+            <div className="flex items-center gap-2.5">
+              <Smartphone className={`w-4 h-4 ${isLfpActive ? "text-cyan-300" : "text-cyan-400"}`} />
+              <div>
+                <p className="font-bold text-white text-[11px]">LFP (Lobaite For Phone)</p>
+                <p className="text-[10px] text-zinc-400">
+                  {isLfpActive ? "Emulação Mobile Ativa" : "Ativar Modo Phone em Tudo"}
+                </p>
+              </div>
+            </div>
+            <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+              isLfpActive ? "bg-cyan-500 text-zinc-950" : "bg-zinc-800 text-zinc-400"
+            }`}>
+              {isLfpActive ? "ATIVO" : "STANDBY"}
+            </span>
+          </button>
+        )}
 
         {/* DNS info row */}
         <div className="p-2.5 rounded-xl bg-zinc-900/60 border border-zinc-800 flex items-center justify-between text-[11px]">

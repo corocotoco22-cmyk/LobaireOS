@@ -15,6 +15,7 @@ import {
   Flame,
   Activity,
   Code2,
+  Smartphone,
 } from "lucide-react";
 import { SystemEdition, SystemTheme, WindowState } from "../../types";
 
@@ -34,6 +35,8 @@ interface TopBarProps {
   onToggleControlCenter: () => void;
   isControlCenterOpen: boolean;
   onOpenApp: (appId: string) => void;
+  isLfpActive?: boolean;
+  onToggleLfp?: () => void;
 }
 
 export const TopBar: React.FC<TopBarProps> = ({
@@ -52,6 +55,8 @@ export const TopBar: React.FC<TopBarProps> = ({
   onToggleControlCenter,
   isControlCenterOpen,
   onOpenApp,
+  isLfpActive,
+  onToggleLfp,
 }) => {
   const [timeStr, setTimeStr] = useState("");
   const [dateStr, setDateStr] = useState("");
@@ -253,6 +258,22 @@ export const TopBar: React.FC<TopBarProps> = ({
         >
           <Sliders className="w-3.5 h-3.5" />
         </button>
+
+        {/* LFP Phone Mode Toggle Button */}
+        {onToggleLfp && (
+          <button
+            onClick={onToggleLfp}
+            className={`p-1.5 rounded-md transition flex items-center gap-1 text-[11px] ${
+              isLfpActive
+                ? "bg-cyan-500 text-zinc-950 font-bold shadow-md shadow-cyan-500/20"
+                : "text-zinc-400 hover:text-cyan-400 hover:bg-zinc-800/60"
+            }`}
+            title="LFP (Lobaite For Phone) - Alternar Modo Mobile"
+          >
+            <Smartphone className="w-3.5 h-3.5" />
+            <span className="hidden xl:inline">LFP</span>
+          </button>
+        )}
 
         {/* Live Clock & Date */}
         <div

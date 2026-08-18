@@ -15,8 +15,11 @@ import { CatEfiBios } from "./components/System/CatEfiBios";
 import { CatrootCefiExplorer } from "./components/System/CatrootCefiExplorer";
 import { EfiRunnerModal } from "./components/System/EfiRunnerModal";
 import { BiosUpgradeExperience } from "./components/System/BiosUpgradeExperience";
+import { LfpPhoneShell } from "./components/Desktop/LfpPhoneShell";
+import { LfpMobileOS } from "./components/Desktop/LfpMobileOS";
+import { DEFAULT_LFP_SETTINGS, LfpSettings } from "./lib/lfpStorage";
 import { EfiExecutable } from "./lib/efiStorage";
-import { Sparkles, ArrowRight, ShieldCheck, Cpu } from "lucide-react";
+import { Sparkles, ArrowRight, ShieldCheck, Cpu, Smartphone } from "lucide-react";
 
 export default function App() {
   // Global Desktop State
@@ -26,6 +29,35 @@ export default function App() {
   const [lockPin, setLockPin] = useState("1337");
   const [autoLockMinutes, setAutoLockMinutes] = useState(15);
   const [clipboardAutoClear, setClipboardAutoClear] = useState(true);
+
+  // LFP (Lobaite For Phone) State
+  const [lfpSettings, setLfpSettings] = useState<LfpSettings>(() => {
+    try {
+      const saved = localStorage.getItem("lobaite_lfp_settings");
+      if (saved) return { ...DEFAULT_LFP_SETTINGS, ...JSON.parse(saved) };
+    } catch {
+      // ignore
+    }
+    return DEFAULT_LFP_SETTINGS;
+  });
+
+  const handleToggleLfp = () => {
+    setLfpSettings((prev) => {
+      const next = { ...prev, enabled: !prev.enabled };
+      try {
+        localStorage.setItem("lobaite_lfp_settings", JSON.stringify(next));
+      } catch {
+        // ignore
+      }
+      return next;
+    });
+    setPanicToast(
+      !lfpSettings.enabled
+        ? "📱 LFP (Lobaite For Phone) ativado em TUDO!"
+        : "💻 Retornado ao modo Desktop padrão."
+    );
+    setTimeout(() => setPanicToast(null), 3500);
+  };
 
   // BIOS Types & Updates State (BW vs catEFI)
   const [activeBiosType, setActiveBiosType] = useState<"BW" | "catefi">(() => {
@@ -283,6 +315,8 @@ export default function App() {
         onToggleControlCenter={() => setIsControlCenterOpen(!isControlCenterOpen)}
         isControlCenterOpen={isControlCenterOpen}
         onOpenApp={handleOpenApp}
+        isLfpActive={lfpSettings.enabled}
+        onToggleLfp={handleToggleLfp}
       />
 
       {/* Desktop Canvas / Window Manager */}
@@ -328,6 +362,9 @@ export default function App() {
           onOpenCefiVault={() => setIsCefiExplorerOpen(true)}
           isRootDeleted={isRootDeleted}
           setIsRootDeleted={handleSetRootDeleted}
+          onLockScreen={() => setIsLocked(true)}
+          lfpSettings={lfpSettings}
+          setLfpSettings={setLfpSettings}
         />
       </main>
 
@@ -363,6 +400,9 @@ export default function App() {
         dnsProvider={dnsProvider}
         onLockScreen={() => setIsLocked(true)}
         onTriggerPanic={handleTriggerPanic}
+        isLfpActive={lfpSettings.enabled}
+        onToggleLfp={handleToggleLfp}
+        onOpenApp={handleOpenApp}
       />
 
       {/* Security Lock Screen */}
@@ -563,6 +603,47 @@ export default function App() {
         isOpen={isUpdatingBios}
         onComplete={handleCompleteBiosUpgrade}
       />
+
+      {/* LFP (Lobaite For Phone) Pure Native Phone OS Interface */}
+      {lfpSettings.enabled && (
+        <LfpMobileOS
+          lfpSettings={lfpSettings}
+          setLfpSettings={setLfpSettings}
+          onExitLfp={handleToggleLfp}
+          onTriggerPanic={handleTriggerPanic}
+          theme={theme}
+          setTheme={setTheme}
+          systemEdition={systemEdition}
+          setSystemEdition={setSystemEdition}
+          lockPin={lockPin}
+          setLockPin={setLockPin}
+          autoLockMinutes={autoLockMinutes}
+          setAutoLockMinutes={setAutoLockMinutes}
+          clipboardAutoClear={clipboardAutoClear}
+          setClipboardAutoClear={setClipboardAutoClear}
+          firewallActive={firewallActive}
+          setFirewallActive={setFirewallActive}
+          stealthMode={stealthMode}
+          setStealthMode={setStealthMode}
+          torRouting={torRouting}
+          setTorRouting={setTorRouting}
+          camMicBlocked={camMicBlocked}
+          setCamMicBlocked={setCamMicBlocked}
+          trackersBlocked={trackersBlocked}
+          setTrackersBlocked={setTrackersBlocked}
+          dnsProvider={dnsProvider}
+          setDnsProvider={setDnsProvider}
+          incidents={incidents}
+          onRestartGrub={() => setIsGrubMode(true)}
+          onOpenTTY={() => {
+            setIsLocked(false);
+            setIsTtyMode(true);
+          }}
+          onOpenCefiVault={() => setIsCefiExplorerOpen(true)}
+          isRootDeleted={isRootDeleted}
+          setIsRootDeleted={handleSetRootDeleted}
+        />
+      )}
 
       {/* Panic Notification Banner */}
       {panicToast && (

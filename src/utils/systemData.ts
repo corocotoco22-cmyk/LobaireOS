@@ -104,6 +104,17 @@ export const APP_REGISTRY: Record<string, AppMetadata> = {
     category: "system",
     badge: "GitHub",
   },
+  lfp: {
+    id: "lfp",
+    name: "LFP (Lobaite For Phone)",
+    shortName: "LFP Phone",
+    description: "Ambiente Mobile Universal, Simulador de Dispositivos e Controles Móveis em Tudo",
+    icon: "Smartphone",
+    defaultWidth: 820,
+    defaultHeight: 580,
+    category: "system",
+    badge: "Mobile UI",
+  },
 };
 
 export const INITIAL_SECURITY_INCIDENTS: SecurityIncident[] = [

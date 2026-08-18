@@ -18,6 +18,8 @@ import { StealthNotesApp } from "../Apps/StealthNotesApp";
 import { ThreatMonitorApp } from "../Apps/ThreatMonitorApp";
 import { SystemSettingsApp } from "../Apps/SystemSettingsApp";
 import { LoComuniteApp } from "../Apps/LoComuniteApp";
+import { LfpApp } from "../Apps/LfpApp";
+import { LfpSettings } from "../../lib/lfpStorage";
 
 interface WindowManagerProps {
   windows: WindowState[];
@@ -59,6 +61,9 @@ interface WindowManagerProps {
   onOpenCefiVault?: () => void;
   isRootDeleted?: boolean;
   setIsRootDeleted?: (deleted: boolean) => void;
+  onLockScreen?: () => void;
+  lfpSettings?: LfpSettings;
+  setLfpSettings?: React.Dispatch<React.SetStateAction<LfpSettings>>;
 }
 
 export const WindowManager: React.FC<WindowManagerProps> = ({
@@ -99,6 +104,21 @@ export const WindowManager: React.FC<WindowManagerProps> = ({
   onOpenCefiVault,
   isRootDeleted,
   setIsRootDeleted,
+  onLockScreen = () => {},
+  lfpSettings = {
+    enabled: false,
+    activeDeviceFrame: "iphone",
+    orientation: "portrait",
+    cellularNetwork: "5G",
+    batteryLevel: 94,
+    isCharging: true,
+    touchHaptics: true,
+    gestureNav: true,
+    screenDpiScale: 1.0,
+    autoDetectViewport: true,
+    emergencySosCall: false,
+  },
+  setLfpSettings = () => {},
 }) => {
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const dragOffsetRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -189,6 +209,19 @@ export const WindowManager: React.FC<WindowManagerProps> = ({
         );
       case "locomunite":
         return <LoComuniteApp />;
+      case "lfp":
+        return (
+          <LfpApp
+            lfpSettings={lfpSettings}
+            setLfpSettings={setLfpSettings}
+            onOpenApp={onOpenApp}
+            onTriggerPanic={onTriggerPanic}
+            onLockScreen={onLockScreen}
+            torRouting={torRouting}
+            firewallActive={firewallActive}
+            stealthMode={stealthMode}
+          />
+        );
       default:
         return <div className="p-6 text-slate-400">Aplicativo em execução.</div>;
     }

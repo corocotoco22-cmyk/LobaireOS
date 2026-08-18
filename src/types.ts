@@ -8,7 +8,8 @@ export type AppId =
   | "notes"
   | "settings"
   | "monitor"
-  | "locomunite";
+  | "locomunite"
+  | "lfp";
 
 export interface AppMetadata {
   id: AppId;
